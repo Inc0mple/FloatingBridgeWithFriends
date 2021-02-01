@@ -3,7 +3,7 @@
 ## Lobby
 
 - Global chat (done)
-- Default randomnised user ID
+- Default randomnised user ID (names on top of messages)
 - Chat user ID
 - Start and Join room
 - Room Browser

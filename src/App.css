@@ -120,15 +120,16 @@ ul, li {
   list-style: none;
 }
 */
-p {
+.messageP {
   max-width: 500px;
-  margin-bottom: 12px;
-  line-height: 24px;
-  padding: 10px 20px;
-  border-radius: 25px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0px;
+  border-radius: 0px;
   position: relative;
-  color: white;
-  text-align: center;
+  color: black;
+  align-self: flex-end;
+  
 }
 
 .message {
@@ -138,9 +139,9 @@ p {
 
 
 .sent {
-  flex-direction: row-reverse;
+  background: #e3e8ff;
 }
-
+/*
 .sent p {
   color: white;
   background: #0b93f6;
@@ -150,11 +151,11 @@ p {
   background: #e5e5ea;
   color: black;
 }
-
+*/
 img {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  margin: 2px 5px;
+  margin: 0px 5px;
 }
 
