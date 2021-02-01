@@ -6,10 +6,16 @@ import "firebase/auth";
 import 'firebase/analytics';
 
 
-// Hooks
+
 import React, { useRef, useState} from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 const stc = require('string-to-color');
 
@@ -44,15 +50,20 @@ function App() {
   //const UserContext = createContext(user);
   return (
     <div className="App">
-      <header>
-        <SignOut />
-      </header>
+      <Router>
+        <header>
+          <SignOut />
+        </header>
 
-      <section>
-        {user ? <Profile /> : <></>}
-        {user ? <MainChat /> : <SignIn />}
-        
-      </section>
+        <section>
+          {user ? <Profile /> : <></>}
+        </section>
+        <section>
+          {user ? <MainChat /> : <SignIn />}
+          {user ? <MainRooms /> : <></>}
+        </section>
+      </Router>
+      
     </div>
   );
 }
@@ -160,8 +171,9 @@ function Profile() {
 }
 
 function MainChat() {
-  //Not sure what this dummy ref thing does. Need to investigate further
-  const dummy = useRef();
+  
+  // useRef is like state, but does not cause re-render on update
+  const dummy = useRef(); //Acts as an anchor for scrolling into view
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy("createdAt").limitToLast(30);
 
@@ -203,7 +215,84 @@ function MainChat() {
   )
 }
 
+function MainRooms() {
 
+  const roomsRef = firestore.collection('rooms');
+  const query = roomsRef.orderBy("createdAt").limitToLast(30);
+
+  //hooks (analogous to setState)
+  const [rooms] = useCollectionData(query, {idField:'id'});
+  const [formValue, setFormValue] = useState('');
+
+  const createRoom = async() => {
+    // Stops form from refreshing page on submit,
+    // which is the default behaviour.
+    // e.preventDefault();
+
+    const { uid, photoURL, displayName} = auth.currentUser;
+
+    await roomsRef.add({
+      roomName: formValue,
+      nickName: formValue,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      host: uid,
+      messages: {},
+      players: [uid],
+      playersCount: 1,
+      private: false
+    })
+    /*
+    await roomsRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })
+    */
+    console.log(`Room created with nickName '${formValue}'`)
+    setFormValue('');
+  }
+
+  const joinRoom = async(inputRoomName) => {
+    // Stops form from refreshing page on submit,
+    // which is the default behaviour.
+    // e.preventDefault();
+  }
+
+  const handleCreateRoom = async(e) => {
+    e.preventDefault();
+    await createRoom()
+  }
+
+  return (
+    <>
+      <main>
+        
+      </main>
+
+      <form onSubmit={handleCreateRoom}>
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+        <button type='submit' disabled={!formValue}>Create Public Room</button>
+        <input type="checkbox" id="private" name="private" ></input>
+        <label htmlFor="private">Set room as private (not working)</label>
+      </form>
+    </>
+  )
+}
+
+/* function LobbyInfo(props) {
+  //
+  //Displays one line of lobby info to populate the MainRooms list of lobbies
+  // Ouught to give each lobby info a unqiue identifying key, probably corresonding to the host uid?
+}
+
+
+For secure routing,ought to check if current user is logged in, if not, redirect to login page
+*/
+
+// Create a component that shows current users online
 function ChatMessage(props) {
   const {text, uid, photoURL, displayName} = props.message;
 
