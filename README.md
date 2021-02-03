@@ -1,20 +1,3 @@
-# Features to implement
+# NOTE
 
-## Lobby
-
-- Global chat (done)
-- Default randomnised user ID (names on top of messages)
-- Chat user ID
-- Start and Join room
-- Room Browser
-
-## Room
-
-- Local chat within room
-- Room name, game type, number of players, max players, private/public room
-- Start game button
-
-## Game
-
-- Bridge logic
-- Taiti logic
+This repository is no longer being mantained due to change in technology stack. Migrated to https://github.com/Inc0mple/FloatingBridgeWithFriends
