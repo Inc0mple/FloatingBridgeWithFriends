@@ -9,7 +9,7 @@
 
 ## Possible learning resources
 
--[Chat app in 7 Minutes with React and Firebase (starting point)](https://www.youtube.com/watch?v=zQyrwxMPm88)
+- [Chat app in 7 Minutes with React and Firebase (starting point)](https://www.youtube.com/watch?v=zQyrwxMPm88)
 
 - [Chat App with Room and Login feature](https://www.djamware.com/post/5f2a1d9d9c794f177fd7b527/react-js-tutorial-building-firebase-chat-app-react-hooks)
 
