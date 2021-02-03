@@ -9,6 +9,8 @@
 
 ## Possible learning resources
 
-- [Chat App with Room and Login feature 1](https://www.djamware.com/post/5f2a1d9d9c794f177fd7b527/react-js-tutorial-building-firebase-chat-app-react-hooks)
+-[Chat app in 7 Minutes with React and Firebase (starting point)](https://www.youtube.com/watch?v=zQyrwxMPm88)
 
-- [Example of browser-based web game using React and Firebase](https://github.com/ekzhang/setwithfriends).
+- [Chat App with Room and Login feature](https://www.djamware.com/post/5f2a1d9d9c794f177fd7b527/react-js-tutorial-building-firebase-chat-app-react-hooks)
+
+- [Example of browser-based web game using React and Firebase (End goal is to have similar functionalities as this)](https://github.com/ekzhang/setwithfriends).
